@@ -9,7 +9,8 @@ const mkdirp = require('mkdirp')
 const fs = require('fs')
 const { spawn } = require('child_process')
 const { extname, basename, dirname } = require('path')
-const FileType = require('file-type')
+// file-type is ESM-only; import it lazily so this file can stay CommonJS on Node 20.
+const fileTypeFromFile = (path) => import('file-type').then((m) => m.fileTypeFromFile(path))
 
 const port = 3001
 const expireDelay = 30  // 30 seconds
@@ -196,7 +197,7 @@ router.post('/upload', upload.single('file'), async ctx => {
 
   const mimetype = ctx.request.file.mimetype
 
-  const type = await FileType.fromFile(ctx.request.file.path)
+  const type = await fileTypeFromFile(ctx.request.file.path)
 
   if (!type || !allowedTypes.includes(type.mime)) {
     flash(ctx, {

@@ -6,16 +6,19 @@
   "scripts": {
     "start": "node index"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "author": "djazz",
   "license": "MIT",
   "dependencies": {
-    "@koa/multer": "^3.0.0",
+    "@koa/multer": "^4.0.0",
     "@koa/router": "^10.1.0",
-    "file-type": "^16.5.3",
-    "koa": "^2.13.1",
+    "file-type": "^21.3.4",
+    "koa": "^2.16.4",
     "koa-logger": "^3.2.1",
     "koa-sendfile": "^3.0.0",
     "mkdirp": "^1.0.4",
-    "multer": "^1.4.3"
+    "multer": "^2.5.0"
   }
 }

@@ -68,7 +68,7 @@ Change the port by editing line 14 (or put a reverse proxy in front).
 
 ### Requirements
 
-- **Node.js 18+** (verified here on v22; upstream documents 16/20). No build step,
+- **Node.js 20+** (verified here on v22). `file-type` 21 requires 20+. No build step,
   no bundler, no transpiler — it is plain CommonJS.
 - **`kepubify`** on your `PATH` — only needed for the Kobo EPUB path, which is the
   default because the checkbox starts ticked.
@@ -270,6 +270,9 @@ This copy predates current upstream. Differences worth knowing:
 - No `Dockerfile`/`docker-compose.yaml` upstream now has (added here).
 - No PDF margin cropping (upstream added a `pdfCropMargins` dependency); nothing in
   this `index.js` references it, so you do not need to install it.
+- Dependencies were upgraded to clear every `npm audit` advisory: `koa` 2.16.4,
+  `multer` 2 / `@koa/multer` 4, and `file-type` 21 (ESM-only, loaded with a dynamic
+  `import()` so `index.js` stays CommonJS).
 - `fs.rm('uploads', …)` originally lacked `force: true`, so **`npm start` crashed with
   `ENOENT: lstat 'uploads'` on a fresh clone**. Fixed here.
 
