@@ -1,0 +1,7 @@
+services:
+  send2ereader:
+    build: .
+    # Keys live in an in-memory Map, so never scale this past one replica.
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
